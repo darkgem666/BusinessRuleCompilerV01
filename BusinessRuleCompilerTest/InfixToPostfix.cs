@@ -12,6 +12,7 @@ namespace BusinessRuleCompilerTest
 		public String postfix { get; set;}
 		//private ParameterExpression X = Expression.Parameter(typeof(double), "X"); /*Expression.Parameter(typeof(double), "X"); tipo y nombre*/
 		private List<char> operatorList = new List<char>(new char[] { '=', '|', '&','(',')' });
+		//private List<string> operators = new List<string>(new string[] {"=", "|", "&", "(", ")", });
 		//public Func<int, bool> ConstructFunction(String function) { 
 
 		//}
@@ -93,7 +94,7 @@ namespace BusinessRuleCompilerTest
 			string st;
 			for (int i = 0; i < infixArray.Length; i++)
 			{
-				if (!("(&|)=".Contains(infixArray[i])))
+				if (!("(&|)=>".Contains(infixArray[i])))
 				{
 					postfix2[index] = infixArray[i];
 					index++;
@@ -152,7 +153,7 @@ namespace BusinessRuleCompilerTest
 			Stack<char> oprerator = new Stack<char>();//Creates a new Stack
 			foreach (char c in inFix.ToCharArray())//Iterates characters in inFix
 			{
-				if (Char.IsNumber(c) || !("(&|)=".Contains(c)))
+				if (Char.IsNumber(c) || !("(&|)=>".Contains(c)))
 					postFix.Append(c);
 				else if (c == '(')
 					oprerator.Push(c);
@@ -224,11 +225,11 @@ namespace BusinessRuleCompilerTest
 
 		private static bool Predecessor(char firstOperator, char secondOperator)
 		{
-			string opString = "(|&=";
+			string opString = "(|&=>";
 
 			int firstPoint, secondPoint;
 
-			int[] precedence = { 0, 12, 13, 14 };// "(" has less prececence
+			int[] precedence = { 0, 12, 13, 14,14 };// "(" has less prececence
 
 			firstPoint = opString.IndexOf(firstOperator);
 			secondPoint = opString.IndexOf(secondOperator);
