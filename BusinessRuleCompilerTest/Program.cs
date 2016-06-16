@@ -6,10 +6,14 @@ namespace BusinessRuleCompilerTest
 	{
 		public static void Main(string[] args)
 		{
-			String infix = "( x =  007698 & ( y =  7656 | y ==  7655 | y =  7616 ))";
+			String infix = "( x = 01 & ( y = 02 | y = 03 | y = 04 ) )";
+			String[] infixArray = infix.Split(' ');
+
 			InfixToPostfix postfix = new InfixToPostfix(infix);
-			postfix.convert();
-			Console.Write(postfix.postfix);
+			String[] postfixArray = postfix.InfixToPostfix2(infixArray);
+			//postfix.convert();
+			Console.Write(String.Join(",",postfixArray));
+			Console.Write(postfix.ConvertToPostFix(infix.Replace(" ", string.Empty)));
 
 		}
 	}

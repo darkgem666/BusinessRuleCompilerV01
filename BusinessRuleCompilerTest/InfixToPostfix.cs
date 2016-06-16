@@ -67,19 +67,134 @@ namespace BusinessRuleCompilerTest
 						} while (ch!='(');
 					}
 
-					while (operatorStack.Count > 0)
-					{
-						if (operatorStack.Peek() != '(' )
-						{
-							postfix += operatorStack.Pop();
-						}
-					}
+
 
 
 				}
 			}
 
+			while (operatorStack.Count > 0)
+			{
+				if (operatorStack.Peek() != '(' )
+				{
+					postfix += operatorStack.Pop();
+				}
+			}
+
 		}
+
+		//Arreglar espacios
+		public  string[] InfixToPostfix2(string[] infixArray)
+		{
+			var stack = new Stack<string>();
+			var postfix2 = new string[infixArray.Length];
+
+			int index = 0;
+			string st;
+			for (int i = 0; i < infixArray.Length; i++)
+			{
+				if (!("(&|)=".Contains(infixArray[i])))
+				{
+					postfix2[index] = infixArray[i];
+					index++;
+				}
+				else
+				{
+					if (infixArray[i].Equals("("))
+					{
+						stack.Push("(");
+					}
+					else if (infixArray[i].Equals(")"))
+					{
+						st = stack.Pop();
+						while (!(st.Equals("(")))
+						{
+							postfix2[index] = st;
+							index++;
+							st = stack.Pop();
+						}
+					}
+					else
+					{
+						while (stack.Count > 0)
+						{
+							st = stack.Pop(); //cambiarlo a peek
+							//if (RegnePrioritet(st) >= RegnePrioritet(infixArray[i]))
+							if (Precedence(infixArray[i],st))
+							{
+								postfix2[index] = st;
+								index++;
+							}
+							else
+							{
+								stack.Push(st);
+								break;
+							}
+						}
+						stack.Push(infixArray[i]);
+					}
+				}
+			}
+			while (stack.Count > 0)
+			{
+				postfix2[index] = stack.Pop();
+				index++;
+			}
+
+			return postfix2.TakeWhile(item => item != null).ToArray();
+		}
+
+
+		public  string ConvertToPostFix(string inFix)
+		{
+			StringBuilder postFix = new StringBuilder();
+			char arrival;
+			Stack<char> oprerator = new Stack<char>();//Creates a new Stack
+			foreach (char c in inFix.ToCharArray())//Iterates characters in inFix
+			{
+				if (Char.IsNumber(c) || !("(&|)=".Contains(c)))
+					postFix.Append(c);
+				else if (c == '(')
+					oprerator.Push(c);
+				else if (c == ')')//Removes all previous elements from Stack and puts them in 
+								  //front of PostFix.  
+				{
+					arrival = oprerator.Pop();
+					while (arrival != '(')
+					{
+						postFix.Append(arrival);
+						arrival = oprerator.Pop();
+					}
+				}
+				else
+				{
+					if (oprerator.Count != 0 && Predecessor(oprerator.Peek(), c))//If find an operator
+					{
+						arrival = oprerator.Pop();
+						while (Predecessor(arrival, c))
+						{
+							postFix.Append(arrival);
+
+							if (oprerator.Count == 0)
+								break;
+
+							arrival = oprerator.Pop();
+						}
+						oprerator.Push(c);
+					}
+					else
+						oprerator.Push(c);//If Stack is empty or the operator has precedence 
+				}
+			}
+			while (oprerator.Count > 0)
+			{
+				arrival = oprerator.Pop();
+				postFix.Append(arrival);
+			}
+			return postFix.ToString();
+		}
+
+	
 
 		private bool Precedence(char symbol1, char symbol2)
 		{
@@ -91,6 +206,34 @@ namespace BusinessRuleCompilerTest
 				return false;
 			return true;
 				
+		}
+
+
+	    private bool Precedence(string symbol1, string symbol2)
+		{
+			if (symbol1 == "=" )//&& (symbol2 != "|" || symbol2 != "&") )
+				return false;
+			else if (symbol1 == "|" && symbol2 == "&")
+				return true;
+			else if (symbol1 == ")" || symbol2 == "(" || symbol1 == "(")
+				return false;
+			return true;
+
+		}
+
+
+		private static bool Predecessor(char firstOperator, char secondOperator)
+		{
+			string opString = "(|&=";
+
+			int firstPoint, secondPoint;
+
+			int[] precedence = { 0, 12, 13, 14 };// "(" has less prececence
+
+			firstPoint = opString.IndexOf(firstOperator);
+			secondPoint = opString.IndexOf(secondOperator);
+
+			return (precedence[firstPoint] >= precedence[secondPoint]) ? true : false;
 		}
 	}
 			

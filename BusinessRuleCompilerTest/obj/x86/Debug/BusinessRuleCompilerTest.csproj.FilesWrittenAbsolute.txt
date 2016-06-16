@@ -3,3 +3,8 @@
 /Users/darkgem/Projects/BusinessRuleCompilerTest/BusinessRuleCompilerTest/bin/Debug/BusinessRuleCompilerTest.exe
 /Users/darkgem/Projects/BusinessRuleCompilerTest/BusinessRuleCompilerTest/obj/x86/Debug/BusinessRuleCompilerTest.exe
 /Users/darkgem/Projects/BusinessRuleCompilerTest/BusinessRuleCompilerTest/obj/x86/Debug/BusinessRuleCompilerTest.exe.mdb
+/Users/DarkGem/Projects/BusinessRuleCompilerV01/BusinessRuleCompilerTest/obj/x86/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/Users/DarkGem/Projects/BusinessRuleCompilerV01/BusinessRuleCompilerTest/bin/Debug/BusinessRuleCompilerTest.exe.mdb
+/Users/DarkGem/Projects/BusinessRuleCompilerV01/BusinessRuleCompilerTest/bin/Debug/BusinessRuleCompilerTest.exe
+/Users/DarkGem/Projects/BusinessRuleCompilerV01/BusinessRuleCompilerTest/obj/x86/Debug/BusinessRuleCompilerTest.exe
+/Users/DarkGem/Projects/BusinessRuleCompilerV01/BusinessRuleCompilerTest/obj/x86/Debug/BusinessRuleCompilerTest.exe.mdb
