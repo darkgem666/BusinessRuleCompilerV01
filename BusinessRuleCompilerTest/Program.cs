@@ -12,8 +12,8 @@ namespace BusinessRuleCompilerTest
 				"| x = 007223 | x = 007287 | ( x = 003259 & y = 7340 ) | x = 007288 | ( x = 006797 & y = 7336 ) | x = 007928 " +
 				"| ( x = 006797 & y = 7340 ) | ( x = 003202 > y = 7370 ) | x = 007310 | x = 007558 | ( x = 007380 & y = 7616 ) " +
 				"| ( x = 003251 & y = 7616 ) | ( x = 003253 & y = 7616 ) | ( x = 003254 & y = 7616 ) | x = Bm0001 | x = Bm0002 " +
-				"| x = Bm0003 | x = Bm0004 | x = 007304 | ( x = 006262 & y = 7655 ) | ( x = 007698 & ( y = 7656 | y = 7655 | y = 7616 )) " +
-				"| ( x = 007699 & y = 7656 ) | ( x = 007700 & y = 7656 ) | ( x = 007703 & ( y = 7655 | y = 7656 )))";
+				"| x = Bm0003 | x = Bm0004 | x = 007304 | ( x = 006262 & y = 7655 ) | ( x = 007698 & ( y = 7656 | y = 7655 | y = 7616 ) ) " +
+				"| ( x = 007699 & y = 7656 ) | ( x = 007700 & y = 7656 ) | ( x = 007703 & ( y = 7655 | y = 7656 ) ) )";
 
 			String[] infixArray = infix.Split(' ');
 
@@ -21,6 +21,10 @@ namespace BusinessRuleCompilerTest
 			String[] postfixArray = postfix.InfixToPostfix2(infixArray);
 			//postfix.convert();
 			Console.Write(String.Join(",",postfixArray));
+
+
+
+			// Da error de stack empty.
 			//Console.Write(postfix.ConvertToPostFix(infix.Replace(" ", string.Empty)));
 
 		}
