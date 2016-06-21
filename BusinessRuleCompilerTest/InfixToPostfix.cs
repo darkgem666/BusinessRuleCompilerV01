@@ -7,7 +7,7 @@ namespace BusinessRuleCompilerTest
 {
 	public class InfixToPostfix
 	{
-		private String constant = "";
+		//private String constant = "";
 		public String infix {get; set;}
 		public String postfix { get; set;}
 		//private ParameterExpression X = Expression.Parameter(typeof(double), "X"); /*Expression.Parameter(typeof(double), "X"); tipo y nombre*/
